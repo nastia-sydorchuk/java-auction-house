@@ -26,4 +26,59 @@ public class Furniture {
         this.startingPrice = startingPrice;
         this.id = id;
     }
+
+    //Return type
+    public String getType() {
+        return type;
+    }
+
+    //Return style
+    public String getStyle() {
+        return style;
+    }
+
+    //Return makersName
+    public String getMakersName() {
+        return makersName;
+    }
+
+    //Return length
+    public float getLength() {
+        return length;
+    }
+
+    //Return height
+    public float getHeight() {
+        return height;
+    }
+
+    //Return depth
+    public float getDepth() {
+        return depth;
+    }
+
+    //Return yearOfOrigin
+    public int getYearOfOrigin() {
+        return yearOfOrigin;
+    }
+
+    //Return owner
+    public String getOwner() {
+        return owner;
+    }
+
+    //Return condition
+    public String getCondition() {
+        return condition;
+    }
+
+    //Return startingPrice
+    public float getStartingPrice() {
+        return startingPrice;
+    }
+
+    //Return id
+    public int getId() {
+        return id;
+    }
 }
