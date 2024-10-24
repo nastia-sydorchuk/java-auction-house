@@ -10,8 +10,8 @@ public class Main{
         // populate with wrongly typed data
         // furnitureList.populate("AuctionHouse/datasets/furniture_items_wrong_types.csv");
 
-
         //create a report
-        furnitureList.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt");
+        FileWriter fileWriter = new FileWriter();
+        fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", furnitureList.createReport());
     }
 }
