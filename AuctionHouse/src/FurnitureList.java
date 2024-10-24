@@ -46,47 +46,47 @@ public class FurnitureList {
         return this.furnitureList.size();
     }
 
-    //return the oldest item id in furnitureList
-    public int findOldestItemId() {
+    //return the oldest item in furnitureList
+    public Furniture findOldestItem() {
         Furniture oldestItem = this.furnitureList.getFirst();
         for (Furniture f : this.furnitureList) {
             if (oldestItem.getYearOfOrigin() > f.getYearOfOrigin())
                 oldestItem = f;
         }
 
-        return oldestItem.getId();
+        return oldestItem;
     }
 
-    //return the newest item id in furnitureList
-    public int findNewestItemId() {
+    //return the newest item in furnitureList
+    public Furniture findNewestItem() {
         Furniture newestItem = this.furnitureList.getFirst();
         for (Furniture f : this.furnitureList) {
             if (newestItem.getYearOfOrigin() < f.getYearOfOrigin())
                 newestItem = f;
         }
 
-        return newestItem.getId();
+        return newestItem;
     }
 
-    //return the cheapest price in furnitureList
-    public float findCheapestPrice() {
-        float cheapestPrice = this.furnitureList.getFirst().getStartingPrice();
+    //return the least expensive item in furnitureList
+    public Furniture findLeastExpensiveItem() {
+        Furniture leastExpensiveItem = this.furnitureList.getFirst();
         for (Furniture f : this.furnitureList) {
-            if (cheapestPrice > f.getStartingPrice())
-                cheapestPrice = f.getStartingPrice();
+            if (leastExpensiveItem.getStartingPrice() > f.getStartingPrice())
+                leastExpensiveItem = f;
         }
 
-        return cheapestPrice;
+        return leastExpensiveItem;
     }
 
-    //return the most expensive price in furnitureList
-    public float findMostExpensivePrice() {
-        float mostExpensivePrice = this.furnitureList.getFirst().getStartingPrice();
+    //return the most expensive item in furnitureList
+    public Furniture findMostExpensivePrice() {
+        Furniture mostExpensiveItem = this.furnitureList.getFirst();
         for (Furniture f : this.furnitureList) {
-            if (mostExpensivePrice < f.getStartingPrice())
-                mostExpensivePrice = f.getStartingPrice();
+            if (mostExpensiveItem.getStartingPrice() < f.getStartingPrice())
+                mostExpensiveItem = f;
         }
 
-        return mostExpensivePrice;
+        return mostExpensiveItem;
     }
 }
