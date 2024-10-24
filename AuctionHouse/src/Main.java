@@ -5,9 +5,7 @@ public class Main{
 
         furnitureList.populate("AuctionHouse/datasets/furniture_items.csv");
 
-        //get number of items
-        int numberOfItems = furnitureList.getSize();
-        System.out.println(numberOfItems);
-
+        //create a report
+        furnitureList.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt");
     }
 }

@@ -89,4 +89,39 @@ public class FurnitureList {
 
         return mostExpensiveItem;
     }
+
+    public String createReport() {
+        Furniture oldestItem = this.findOldestItem();
+        Furniture newestItem = this.findNewestItem();
+        Furniture leastExpensiveItem = this.findLeastExpensiveItem();
+        Furniture mostExpensiveItem = this.findMostExpensivePrice();
+
+        String report = "Total number of items in inventory is " + this.getSize() + "\n";
+        report += "The oldest item is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin() + "\n";
+        report += "The newest item is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin() + "\n";
+        report += "The least expensive item is under ID " + leastExpensiveItem.getId() + ", starting price: " + leastExpensiveItem.getStartingPrice() + "\n";
+        report += "The most expensive item is under ID " + mostExpensiveItem.getId() + ", starting price: " + mostExpensiveItem.getStartingPrice() + "\n";
+
+        return report;
+    }
+
+    public void writeReportToFile(String filename) {
+        FileWriter fw;
+        String report = createReport();
+        try {
+            fw = new FileWriter(filename);
+            fw.write(report);
+            fw.close();
+        }
+        //message and stop if file not found
+        catch (FileNotFoundException fnf) {
+            System.out.println(filename + " not found ");
+            System.exit(0);
+        }
+        //stack trace here because we don't expect to come here
+        catch (IOException ioe) {
+            ioe.printStackTrace(); //goes to standard output
+            System.exit(1);
+        }
+    }
 }
