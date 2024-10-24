@@ -24,7 +24,11 @@ public class FurnitureList {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(furnitureFilename + " not found");
+            System.exit(0);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.exit(1);
         }
     }
 
