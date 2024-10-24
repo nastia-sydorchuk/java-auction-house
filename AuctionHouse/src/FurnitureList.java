@@ -19,7 +19,9 @@ public class FurnitureList {
             while (scanner.hasNextLine()) {
                 String inputLine = scanner.nextLine();
                 Furniture furniture = parser.parseFurnitureFromLine(inputLine);
-                this.addOneFurniture(furniture);
+                if (furniture != null) {
+                    this.addOneFurniture(furniture);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
