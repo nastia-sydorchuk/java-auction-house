@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class FurnitureList {
@@ -16,9 +15,11 @@ public class FurnitureList {
         File f = new File(furnitureFilename);
         try (Scanner scanner = new Scanner(f)) {
             FurnitureParser parser = new FurnitureParser();
+            byte count = 0;
             while (scanner.hasNextLine()) {
                 String inputLine = scanner.nextLine();
-                Furniture furniture = parser.parseFurnitureFromLine(inputLine);
+                count++;
+                Furniture furniture = parser.parseFurnitureFromLine(inputLine, count);
                 if (furniture != null) {
                     this.addOneFurniture(furniture);
                 }
