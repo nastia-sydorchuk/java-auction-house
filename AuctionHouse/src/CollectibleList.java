@@ -2,30 +2,30 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FurnitureList {
-    private ArrayList<Furniture> furnitureList;
+public class CollectibleList {
+    private ArrayList<Collectible> collectibles;
 
     //create an empty arraylist
-    public FurnitureList() {
-        this.furnitureList = new ArrayList<Furniture> ();
+    public CollectibleList() {
+        this.collectibles = new ArrayList<>();
     }
 
-    // populate furniture list with data from the file
-    public void populate(String furnitureFilename) {
-        File f = new File(furnitureFilename);
-        try (Scanner scanner = new Scanner(f)) {
-            FurnitureParser parser = new FurnitureParser();
+    // populate collectible list with data from the file
+    public void populate(String collectibleFilename) {
+        File c = new File(collectibleFilename);
+        try (Scanner scanner = new Scanner(c)) {
+            CollectibleParser parser = new CollectibleParser();
             byte count = 0;
             while (scanner.hasNextLine()) {
                 String inputLine = scanner.nextLine();
                 count++;
-                Furniture furniture = parser.parseFurnitureFromLine(inputLine, count);
-                if (furniture != null) {
-                    this.addOneFurniture(furniture);
+                Collectible collectible = parser.parseCollectibleFromLine(inputLine, count);
+                if (collectible != null) {
+                    this.addOneCollectible(collectible);
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(furnitureFilename + " not found");
+            System.out.println(collectibleFilename + " not found");
             System.exit(0);
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -33,65 +33,65 @@ public class FurnitureList {
         }
     }
 
-    public void addOneFurniture(Furniture f) {
-        int id = f.getId();
-        Furniture inList = this.findById(id);
+    public void addOneCollectible(Collectible c) {
+        int id = c.getId();
+        Collectible inList = this.findById(id);
         if (inList == null) {
-            this.furnitureList.add(f);
+            this.collectibles.add(c);
         }
     }
 
-    public Furniture findById(int id){
-        for (Furniture f : furnitureList)
-            if (f.getId() == id)
-                return f;
+    public Collectible findById(int id){
+        for (Collectible c : collectibles)
+            if (c.getId() == id)
+                return c;
         return null;
     }
 
-    //return number of items in furnitureList
+    //return number of items in collectibles
     public int getSize() {
-        return this.furnitureList.size();
+        return this.collectibles.size();
     }
 
-    //return the oldest item in furnitureList
-    public Furniture findOldestItem() {
-        Furniture oldestItem = this.furnitureList.getFirst();
-        for (Furniture f : this.furnitureList) {
-            if (oldestItem.getYearOfOrigin() > f.getYearOfOrigin())
-                oldestItem = f;
+    //return the oldest item in collectibles
+    public Collectible findOldestItem() {
+        Collectible oldestItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (oldestItem.getYearOfOrigin() > c.getYearOfOrigin())
+                oldestItem = c;
         }
 
         return oldestItem;
     }
 
-    //return the newest item in furnitureList
-    public Furniture findNewestItem() {
-        Furniture newestItem = this.furnitureList.getFirst();
-        for (Furniture f : this.furnitureList) {
-            if (newestItem.getYearOfOrigin() < f.getYearOfOrigin())
-                newestItem = f;
+    //return the newest item in collectibles
+    public Collectible findNewestItem() {
+        Collectible newestItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (newestItem.getYearOfOrigin() < c.getYearOfOrigin())
+                newestItem = c;
         }
 
         return newestItem;
     }
 
-    //return the least expensive item in furnitureList
-    public Furniture findLeastExpensiveItem() {
-        Furniture leastExpensiveItem = this.furnitureList.getFirst();
-        for (Furniture f : this.furnitureList) {
-            if (leastExpensiveItem.getStartingPrice() > f.getStartingPrice())
-                leastExpensiveItem = f;
+    //return the least expensive item in collectibles
+    public Collectible findLeastExpensiveItem() {
+        Collectible leastExpensiveItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (leastExpensiveItem.getStartingPrice() > c.getStartingPrice())
+                leastExpensiveItem = c;
         }
 
         return leastExpensiveItem;
     }
 
-    //return the most expensive item in furnitureList
-    public Furniture findMostExpensivePrice() {
-        Furniture mostExpensiveItem = this.furnitureList.getFirst();
-        for (Furniture f : this.furnitureList) {
-            if (mostExpensiveItem.getStartingPrice() < f.getStartingPrice())
-                mostExpensiveItem = f;
+    //return the most expensive item in collectibles
+    public Collectible findMostExpensivePrice() {
+        Collectible mostExpensiveItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (mostExpensiveItem.getStartingPrice() < c.getStartingPrice())
+                mostExpensiveItem = c;
         }
 
         return mostExpensiveItem;
@@ -134,7 +134,7 @@ public class FurnitureList {
         int length = this.getSize();
         float[] prices = new float[length];
         for (int i = 0; i < length; i++) {
-            prices[i] = this.furnitureList.get(i).getStartingPrice();
+            prices[i] = this.collectibles.get(i).getStartingPrice();
         }
 
         return prices;
@@ -146,8 +146,8 @@ public class FurnitureList {
         int goodCount = 0;
         int damagedCount = 0;
 
-        for (Furniture f : furnitureList) {
-            String condition = f.getCondition();
+        for (Collectible c : collectibles) {
+            String condition = c.getCondition();
 
             switch (condition) {
                 case "New":
@@ -168,10 +168,10 @@ public class FurnitureList {
     }
 
     public String createReport() {
-        Furniture oldestItem = this.findOldestItem();
-        Furniture newestItem = this.findNewestItem();
-        Furniture leastExpensiveItem = this.findLeastExpensiveItem();
-        Furniture mostExpensiveItem = this.findMostExpensivePrice();
+        Collectible oldestItem = this.findOldestItem();
+        Collectible newestItem = this.findNewestItem();
+        Collectible leastExpensiveItem = this.findLeastExpensiveItem();
+        Collectible mostExpensiveItem = this.findMostExpensivePrice();
         float[] startingPricesArray = this.extractPrices();
 
         String report = "Total number of items in inventory is " + this.getSize() + "\n";
