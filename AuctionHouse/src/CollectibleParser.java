@@ -25,7 +25,7 @@ public class CollectibleParser {
         int id = this.parseInt(9);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
-        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[7].trim().toUpperCase());
+        Collectible.ConditionType type = this.parseConditionType(this.parts[7]);
 
         return new Book(
                 this.parts[1],
@@ -46,7 +46,7 @@ public class CollectibleParser {
         int id = this.parseInt(9);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
-        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[7].trim().toUpperCase());
+        Collectible.ConditionType type = this.parseConditionType(this.parts[7]);
 
         return new Coin(
                 this.parts[1],
@@ -65,7 +65,7 @@ public class CollectibleParser {
         int id = this.parseInt(8);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[4]);
         float startingPrice = this.parseFloat(7);
-        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[6].trim().toUpperCase());
+        Collectible.ConditionType type = this.parseConditionType(this.parts[6]);
 
         return new Car(
                 this.parts[1],
@@ -87,7 +87,7 @@ public class CollectibleParser {
         int id = this.parseInt(11);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[7]);
         float startingPrice = this.parseFloat(10);
-        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[9].trim().toUpperCase());
+        Collectible.ConditionType type = this.parseConditionType(this.parts[9]);
 
         return new Furniture(
                 this.parts[1],
@@ -152,6 +152,15 @@ public class CollectibleParser {
         } catch (NumberFormatException e) {
             System.out.println("Invalid year format for estimated year: " + estimatedYear);
             return null;
+        }
+    }
+
+    public Collectible.ConditionType parseConditionType(String input) {
+        try {
+            return Collectible.ConditionType.valueOf(input.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid media type: " + input);
+            return Collectible.ConditionType.MINT; // assume MINT is default
         }
     }
 
