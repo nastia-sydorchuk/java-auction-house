@@ -53,7 +53,7 @@ public class CollectibleList {
         return this.collectibles.size();
     }
 
-    //return the oldest item in collectibles
+    //return the oldest item in collectibles using the low estimate
     public Collectible findOldestItem() {
         Collectible oldestItem = this.collectibles.getFirst();
         for (Collectible c : this.collectibles) {
@@ -64,11 +64,33 @@ public class CollectibleList {
         return oldestItem;
     }
 
-    //return the newest item in collectibles
+    //return the newest item in collectibles using high estimate
     public Collectible findNewestItem() {
         Collectible newestItem = this.collectibles.getFirst();
         for (Collectible c : this.collectibles) {
             if (newestItem.getYearOfOrigin().getHigh() < c.getYearOfOrigin().getHigh())
+                newestItem = c;
+        }
+
+        return newestItem;
+    }
+
+    //return the oldest item in collectibles using middle estimate
+    public Collectible findOldestItemMiddle() {
+        Collectible oldestItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (oldestItem.getYearOfOrigin().getMiddleEstimate() > c.getYearOfOrigin().getMiddleEstimate())
+                oldestItem = c;
+        }
+
+        return oldestItem;
+    }
+
+    //return the newest item in collectibles using middle estimate
+    public Collectible findNewestItemMiddle() {
+        Collectible newestItem = this.collectibles.getFirst();
+        for (Collectible c : this.collectibles) {
+            if (newestItem.getYearOfOrigin().getMiddleEstimate() < c.getYearOfOrigin().getMiddleEstimate())
                 newestItem = c;
         }
 
@@ -170,13 +192,17 @@ public class CollectibleList {
     public String createReport() {
         Collectible oldestItem = this.findOldestItem();
         Collectible newestItem = this.findNewestItem();
+        Collectible oldestItemMiddle = this.findOldestItemMiddle();
+        Collectible newestItemMiddle = this.findNewestItemMiddle();
         Collectible leastExpensiveItem = this.findLeastExpensiveItem();
         Collectible mostExpensiveItem = this.findMostExpensivePrice();
         float[] startingPricesArray = this.extractPrices();
 
         String report = "Total number of items in inventory is " + this.getSize() + "\n";
-        report += "The oldest item is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin() + "\n";
-        report += "The newest item is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin() + "\n";
+        report += "The oldest item using low estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin().getLow() + "\n";
+        report += "The newest item using high estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin().getHigh() + "\n";
+        report += "The oldest item using middle estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
+        report += "The newest item using middle estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
         report += "The least expensive item is under ID " + leastExpensiveItem.getId() + ", starting price: " + leastExpensiveItem.getStartingPrice() + "\n";
         report += "The most expensive item is under ID " + mostExpensiveItem.getId() + ", starting price: " + mostExpensiveItem.getStartingPrice() + "\n";
         report += "Breakdown of items by condition:\n" + this.getBreakdownByCondition();
