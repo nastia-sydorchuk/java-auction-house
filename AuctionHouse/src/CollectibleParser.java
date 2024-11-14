@@ -7,6 +7,7 @@ public class CollectibleParser {
             String type = this.parts[0];
 
             switch(type) {
+                case "book": return parseBookFromLine();
                 case "furniture": return parseFurnitureFromLine();
                 default:
                     System.out.println("Unknown type " + type + " in line " + count);
@@ -16,6 +17,24 @@ public class CollectibleParser {
             System.out.println("Not enough fields in line " + count);
             return null;
         }
+    }
+
+    public Book parseBookFromLine() {
+        int id = this.parseInt(9);
+        int year = this.parseInt(5);
+        float startingPrice = this.parseFloat(8);
+
+        return new Book(
+                this.parts[1],
+                this.parts[2],
+                this.parts[3],
+                this.parts[4],
+                year,
+                this.parts[6],
+                this.parts[7],
+                startingPrice,
+                id
+        );
     }
 
     public Furniture parseFurnitureFromLine() {
