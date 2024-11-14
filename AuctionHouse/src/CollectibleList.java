@@ -57,7 +57,7 @@ public class CollectibleList {
     public Collectible findOldestItem() {
         Collectible oldestItem = this.collectibles.getFirst();
         for (Collectible c : this.collectibles) {
-            if (oldestItem.getYearOfOrigin() > c.getYearOfOrigin())
+            if (oldestItem.getYearOfOrigin().getLow() > c.getYearOfOrigin().getLow())
                 oldestItem = c;
         }
 
@@ -68,7 +68,7 @@ public class CollectibleList {
     public Collectible findNewestItem() {
         Collectible newestItem = this.collectibles.getFirst();
         for (Collectible c : this.collectibles) {
-            if (newestItem.getYearOfOrigin() < c.getYearOfOrigin())
+            if (newestItem.getYearOfOrigin().getHigh() < c.getYearOfOrigin().getHigh())
                 newestItem = c;
         }
 

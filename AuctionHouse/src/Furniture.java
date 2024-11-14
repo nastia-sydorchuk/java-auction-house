@@ -8,7 +8,7 @@ public class Furniture extends Collectible {
     private float depth;
 
     //constructor
-    public Furniture(String type, String style, String makersName, float length, float height, float depth, int yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    public Furniture(String type, String style, String makersName, float length, float height, float depth, EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
         super(yearOfOrigin, owner, condition, startingPrice, id);
         this.type = type;
         this.style = style;

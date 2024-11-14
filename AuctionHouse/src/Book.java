@@ -6,7 +6,7 @@ public class Book extends Collectible {
     private String authorsName;
 
     //constructor
-    public Book(String title, String edition, String genre, String authorsName, int yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    public Book(String title, String edition, String genre, String authorsName, EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
         super(yearOfOrigin, owner, condition, startingPrice, id);
         this.title = title;
         this.edition = edition;

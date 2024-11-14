@@ -23,7 +23,7 @@ public class CollectibleParser {
 
     public Book parseBookFromLine() {
         int id = this.parseInt(9);
-        int year = this.parseInt(5);
+        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
 
         return new Book(
@@ -31,7 +31,7 @@ public class CollectibleParser {
                 this.parts[2],
                 this.parts[3],
                 this.parts[4],
-                year,
+                estimatedYear,
                 this.parts[6],
                 this.parts[7],
                 startingPrice,
@@ -43,7 +43,7 @@ public class CollectibleParser {
         float originalValue = this.parseFloat(3);
 
         int id = this.parseInt(9);
-        int year = this.parseInt(5);
+        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
 
         return new Coin(
@@ -51,7 +51,7 @@ public class CollectibleParser {
                 this.parts[2],
                 originalValue,
                 this.parts[4],
-                year,
+                estimatedYear,
                 this.parts[6],
                 this.parts[7],
                 startingPrice,
@@ -61,14 +61,14 @@ public class CollectibleParser {
 
     public Car parseCarFromLine() {
         int id = this.parseInt(8);
-        int year = this.parseInt(4);
+        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[4]);
         float startingPrice = this.parseFloat(7);
 
         return new Car(
                 this.parts[1],
                 this.parts[2],
                 Boolean.parseBoolean(this.parts[3]),
-                year,
+                estimatedYear,
                 this.parts[5],
                 this.parts[6],
                 startingPrice,
@@ -82,7 +82,7 @@ public class CollectibleParser {
         float depth = this.parseFloat(6);
 
         int id = this.parseInt(11);
-        int year = this.parseInt(7);
+        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[7]);
         float startingPrice = this.parseFloat(10);
 
         return new Furniture(
@@ -92,7 +92,7 @@ public class CollectibleParser {
                 length,
                 height,
                 depth,
-                year,
+                estimatedYear,
                 this.parts[8],
                 this.parts[9],
                 startingPrice,
@@ -122,4 +122,33 @@ public class CollectibleParser {
             return 0;
         }
     }
+
+    private int parseInt(String numString) {
+        try {
+            String numStringTrimmed = numString.trim();
+            return Integer.parseInt(numStringTrimmed);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid integer value: " + numString);
+            return 0;
+        }
+    }
+
+    private EstimatedYear parseEstimatedYear(String estimatedYear) {
+        try {
+            if (estimatedYear.contains("-")) { // Check if it's a range
+                String[] yearRange = estimatedYear.split("-");
+
+                int low = parseInt(yearRange[0]);
+                int high = parseInt(yearRange[1]);
+                return new EstimatedYear(low, high);
+            } else {
+                int year = parseInt(estimatedYear);
+                return new EstimatedYear(year);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid year format for estimated year: " + estimatedYear);
+            return null;
+        }
+    }
+
 }

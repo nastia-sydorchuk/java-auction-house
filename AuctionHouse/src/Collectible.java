@@ -1,12 +1,12 @@
 public abstract class Collectible {
     //instance variables
-    private int yearOfOrigin;
+    private EstimatedYear yearOfOrigin;
     private String owner;
     private String condition;
     private float startingPrice;
     private int id;
 
-    protected Collectible(int yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    protected Collectible(EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
         this.yearOfOrigin = yearOfOrigin;
         this.owner = owner;
         this.condition = condition;
@@ -15,7 +15,7 @@ public abstract class Collectible {
     }
 
     //Return yearOfOrigin
-    public int getYearOfOrigin() {
+    public EstimatedYear getYearOfOrigin() {
         return yearOfOrigin;
     }
 
