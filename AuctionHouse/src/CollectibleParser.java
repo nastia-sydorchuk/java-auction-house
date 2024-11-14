@@ -8,6 +8,7 @@ public class CollectibleParser {
 
             switch(type) {
                 case "book": return parseBookFromLine();
+                case "coin": return parseCoinFromLine();
                 case "furniture": return parseFurnitureFromLine();
                 default:
                     System.out.println("Unknown type " + type + " in line " + count);
@@ -28,6 +29,26 @@ public class CollectibleParser {
                 this.parts[1],
                 this.parts[2],
                 this.parts[3],
+                this.parts[4],
+                year,
+                this.parts[6],
+                this.parts[7],
+                startingPrice,
+                id
+        );
+    }
+
+    public Coin parseCoinFromLine() {
+        float originalValue = this.parseFloat(3);
+
+        int id = this.parseInt(9);
+        int year = this.parseInt(5);
+        float startingPrice = this.parseFloat(8);
+
+        return new Coin(
+                this.parts[1],
+                this.parts[2],
+                originalValue,
                 this.parts[4],
                 year,
                 this.parts[6],
