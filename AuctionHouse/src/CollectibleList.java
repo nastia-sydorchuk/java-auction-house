@@ -97,6 +97,28 @@ public class CollectibleList {
         return newestItem;
     }
 
+    //return items with the top 3 most differences in year estimates
+    public Collectible[] findTopThreeWithMostYearsDifferences() {
+        Collectible[] items = new Collectible[3];
+
+        for (Collectible c : this.collectibles) {
+            int difference = c.getYearOfOrigin().getDifference();
+
+            if (items[0] == null || difference > items[0].getYearOfOrigin().getDifference()) {
+                items[2] = items[1];
+                items[1] = items[0];
+                items[0] = c;
+            } else if (items[1] == null || difference > items[1].getYearOfOrigin().getDifference()) {
+                items[2] = items[1];
+                items[1] = c;
+            } else if (items[2] == null || difference > items[2].getYearOfOrigin().getDifference()) {
+                items[2] = c;
+            }
+        }
+
+        return items;
+    }
+
     //return the least expensive item in collectibles
     public Collectible findLeastExpensiveItem() {
         Collectible leastExpensiveItem = this.collectibles.getFirst();
@@ -194,6 +216,7 @@ public class CollectibleList {
         Collectible newestItem = this.findNewestItem();
         Collectible oldestItemMiddle = this.findOldestItemMiddle();
         Collectible newestItemMiddle = this.findNewestItemMiddle();
+        Collectible[] itemsWithMostYearsDifferences = this.findTopThreeWithMostYearsDifferences();
         Collectible leastExpensiveItem = this.findLeastExpensiveItem();
         Collectible mostExpensiveItem = this.findMostExpensivePrice();
         float[] startingPricesArray = this.extractPrices();
@@ -203,6 +226,10 @@ public class CollectibleList {
         report += "The newest item using high estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin().getHigh() + "\n";
         report += "The oldest item using middle estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
         report += "The newest item using middle estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
+        report += "The top three items with the most years differences are: ID " + itemsWithMostYearsDifferences[0].getId() + ", difference: " + itemsWithMostYearsDifferences[0].getYearOfOrigin().getDifference()
+                + ", ID " + itemsWithMostYearsDifferences[1].getId() + ", difference: " + itemsWithMostYearsDifferences[1].getYearOfOrigin().getDifference()
+                + ", ID " + itemsWithMostYearsDifferences[2].getId() + ", difference: " + itemsWithMostYearsDifferences[2].getYearOfOrigin().getDifference() + "\n";
+
         report += "The least expensive item is under ID " + leastExpensiveItem.getId() + ", starting price: " + leastExpensiveItem.getStartingPrice() + "\n";
         report += "The most expensive item is under ID " + mostExpensiveItem.getId() + ", starting price: " + mostExpensiveItem.getStartingPrice() + "\n";
         report += "Breakdown of items by condition:\n" + this.getBreakdownByCondition();

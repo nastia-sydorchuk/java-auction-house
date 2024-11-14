@@ -28,4 +28,9 @@ public class EstimatedYear {
     public int getMiddleEstimate() {
         return (this.low + this.high) / 2;
     }
+
+    // return difference between high and low
+    public int getDifference() {
+        return this.high - this.low;
+    }
 }
