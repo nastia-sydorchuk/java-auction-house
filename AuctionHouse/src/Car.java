@@ -4,7 +4,7 @@ public class Car extends Collectible {
     private boolean hasBeenServiced;
 
     //constructor
-    public Car(String make, String model, boolean hasBeenServiced, EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    public Car(String make, String model, boolean hasBeenServiced, EstimatedYear yearOfOrigin, String owner, ConditionType condition, float startingPrice, int id) {
         super(yearOfOrigin, owner, condition, startingPrice, id);
         this.make = make;
         this.model = model;

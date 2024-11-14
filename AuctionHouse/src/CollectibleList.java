@@ -191,16 +191,16 @@ public class CollectibleList {
         int damagedCount = 0;
 
         for (Collectible c : collectibles) {
-            String condition = c.getCondition();
+            Collectible.ConditionType condition = c.getCondition();
 
             switch (condition) {
-                case "New":
+                case Collectible.ConditionType.MINT:
                     newCount++;
                     break;
-                case "Good":
+                case Collectible.ConditionType.RESTORED:
                     goodCount++;
                     break;
-                case "Damaged":
+                case Collectible.ConditionType.NEEDS_RESTORING:
                     damagedCount++;
                     break;
                 default:
@@ -208,7 +208,7 @@ public class CollectibleList {
             }
         }
 
-        return "New: " + newCount + "\n" + "Good: " + goodCount + "\n" + "Damaged: " + damagedCount + "\n";
+        return "Mint: " + newCount + "\n" + "Restored: " + goodCount + "\n" + "Needs restoring: " + damagedCount + "\n";
     }
 
     public String createReport() {

@@ -1,28 +1,28 @@
-furniture,Chair,Modern,JL,80.25,100,95,2023,JL,New,220,1
-furniture,Chair,Traditional,MS,80,100.5,95,2002-2005,MS,Good,150,2
-furniture,Chair,Industrial,JL,80,100,95,2022,JL,New,130,3
-furniture,Table,Modern,JL,150,80,80,2022,JL,New,220,4
-furniture,Table,Traditional,MS,150,80.3,80,2012,MS,Good,130,5
-furniture,Table,Industrial,JL,150,80,80,2022,JL,New,150,6
-furniture,Sofa,Modern,JL,230,85,95,2022,JL,New,900,7
-furniture,Sofa,Traditional,MS,230,85,95,2012-2013,MS,Good,1200,8
-furniture,Sofa,Industrial,JL,230,85,95,2024,JL,New,1500,9
-furniture,Wardrobe,Modern,JL,200,200,65,2022,JL,New,430,10
-furniture,Wardrobe,Traditional,MS,200,200,65,2012-2018,MS,Good,290,11
-furniture,Wardrobe,Industrial,MS,200,200,65,2009-2013,MS,Good,230,12
-furniture,Bed,Modern,JL,230,110,140,2022,JL,New,990,13
-furniture,Bed,Traditional,MS,230,110,140,2012,MS,Good,850,14
-furniture,Bed,Industrial,MS,230,110,140,2012,MS,Good,750,15
-furniture,Desk,Modern,JL,120,75,45,2022,JL,New,165,16
-furniture,Desk,Traditional,MS,120,75,45,2012,MS,Good,215,17
-furniture,Desk,Industrial,MS,120,75,45,2012-2013,MS,Good,120,18
-furniture,Bookshelf,Modern,JL,80,100,30,2022,JL,New,230,19
-furniture,Bookshelf,Traditional,MS,80,200,30,2012,MS,Good,150,20
-book,The Catcher in the Rye,Second,Fiction,J.D. Salinger,1999,MS,Good,60,21
-book,1984,Second,Fiction,George Orwell,1985,MS,Good,80,22
-book,To Kill a Mockingbird,Third,Fiction,Harper Lee,2010,MS,Good,40,23
-car,Tesla,S,false,2022,MS,Good,85000,24
-car,Porsche,911,false,2025,MS,New,150000,25
-car,Jaguar,F-type,true,2015,MS,Good,70000,26
-coin,Silver,Canada,15,dollar,1999,MS,Good,80,27
-coin,Gold,Canada,15,dollar,2005,MS,Good,120,28
+furniture,Chair,Modern,JL,80.25,100,95,2023,JL,Mint,220,1
+furniture,Chair,Traditional,MS,80,100.5,95,2002-2005,MS,Mint,150,2
+furniture,Chair,Industrial,JL,80,100,95,2022,JL,Mint,130,3
+furniture,Table,Modern,JL,150,80,80,2022,JL,Mint,220,4
+furniture,Table,Traditional,MS,150,80.3,80,2012,MS,Mint,130,5
+furniture,Table,Industrial,JL,150,80,80,2022,JL,Mint,150,6
+furniture,Sofa,Modern,JL,230,85,95,2022,JL,Restored,900,7
+furniture,Sofa,Traditional,MS,230,85,95,2012-2013,MS,Restored,1200,8
+furniture,Sofa,Industrial,JL,230,85,95,2024,JL,Restored,1500,9
+furniture,Wardrobe,Modern,JL,200,200,65,2022,JL,Restored,430,10
+furniture,Wardrobe,Traditional,MS,200,200,65,2012-2018,MS,NEEDS_RESTORING,290,11
+furniture,Wardrobe,Industrial,MS,200,200,65,2009-2013,MS,NEEDS_RESTORING,230,12
+furniture,Bed,Modern,JL,230,110,140,2022,JL,NEEDS_RESTORING,990,13
+furniture,Bed,Traditional,MS,230,110,140,2012,MS,NEEDS_RESTORING,850,14
+furniture,Bed,Industrial,MS,230,110,140,2012,MS,Restored,750,15
+furniture,Desk,Modern,JL,120,75,45,2022,JL,Restored,165,16
+furniture,Desk,Traditional,MS,120,75,45,2012,MS,Restored,215,17
+furniture,Desk,Industrial,MS,120,75,45,2012-2013,MS,Mint,120,18
+furniture,Bookshelf,Modern,JL,80,100,30,2022,JL,Mint,230,19
+furniture,Bookshelf,Traditional,MS,80,200,30,2012,MS,Mint,150,20
+book,The Catcher in the Rye,Second,Fiction,J.D. Salinger,1999,MS,Restored,60,21
+book,1984,Second,Fiction,George Orwell,1985,MS,Mint,80,22
+book,To Kill a Mockingbird,Third,Fiction,Harper Lee,2010,MS,Restored,40,23
+car,Tesla,S,false,2022,MS,Mint,85000,24
+car,Porsche,911,false,2025,MS,Mint,150000,25
+car,Jaguar,F-type,true,2015,MS,Mint,70000,26
+coin,Silver,Canada,15,dollar,1999,MS,Mint,80,27
+coin,Gold,Canada,15,dollar,2005,MS,Mint,120,28

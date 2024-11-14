@@ -5,7 +5,7 @@ public class Coin extends Collectible {
     private String currency;
 
     //constructor
-    public Coin(String material, String placeOfOrigin, float originalValue, String currency, EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    public Coin(String material, String placeOfOrigin, float originalValue, String currency, EstimatedYear yearOfOrigin, String owner, ConditionType condition, float startingPrice, int id) {
         super(yearOfOrigin, owner, condition, startingPrice, id);
         this.material = material;
         this.placeOfOrigin = placeOfOrigin;

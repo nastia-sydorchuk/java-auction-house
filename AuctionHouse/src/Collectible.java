@@ -2,11 +2,11 @@ public abstract class Collectible {
     //instance variables
     private EstimatedYear yearOfOrigin;
     private String owner;
-    private String condition;
+    private ConditionType condition;
     private float startingPrice;
     private int id;
 
-    protected Collectible(EstimatedYear yearOfOrigin, String owner, String condition, float startingPrice, int id) {
+    protected Collectible(EstimatedYear yearOfOrigin, String owner, ConditionType condition, float startingPrice, int id) {
         this.yearOfOrigin = yearOfOrigin;
         this.owner = owner;
         this.condition = condition;
@@ -25,7 +25,7 @@ public abstract class Collectible {
     }
 
     //Return condition
-    public String getCondition() {
+    public ConditionType getCondition() {
         return condition;
     }
 
@@ -37,5 +37,11 @@ public abstract class Collectible {
     //Return id
     public int getId() {
         return id;
+    }
+
+    public enum ConditionType {
+        MINT,
+        RESTORED,
+        NEEDS_RESTORING
     }
 }

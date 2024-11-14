@@ -25,6 +25,7 @@ public class CollectibleParser {
         int id = this.parseInt(9);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
+        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[7].trim().toUpperCase());
 
         return new Book(
                 this.parts[1],
@@ -33,7 +34,7 @@ public class CollectibleParser {
                 this.parts[4],
                 estimatedYear,
                 this.parts[6],
-                this.parts[7],
+                type,
                 startingPrice,
                 id
         );
@@ -45,6 +46,7 @@ public class CollectibleParser {
         int id = this.parseInt(9);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
         float startingPrice = this.parseFloat(8);
+        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[7].trim().toUpperCase());
 
         return new Coin(
                 this.parts[1],
@@ -53,7 +55,7 @@ public class CollectibleParser {
                 this.parts[4],
                 estimatedYear,
                 this.parts[6],
-                this.parts[7],
+                type,
                 startingPrice,
                 id
         );
@@ -63,6 +65,7 @@ public class CollectibleParser {
         int id = this.parseInt(8);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[4]);
         float startingPrice = this.parseFloat(7);
+        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[6].trim().toUpperCase());
 
         return new Car(
                 this.parts[1],
@@ -70,7 +73,7 @@ public class CollectibleParser {
                 Boolean.parseBoolean(this.parts[3]),
                 estimatedYear,
                 this.parts[5],
-                this.parts[6],
+                type,
                 startingPrice,
                 id
         );
@@ -84,6 +87,7 @@ public class CollectibleParser {
         int id = this.parseInt(11);
         EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[7]);
         float startingPrice = this.parseFloat(10);
+        Collectible.ConditionType type = Collectible.ConditionType.valueOf(this.parts[9].trim().toUpperCase());
 
         return new Furniture(
                 this.parts[1],
@@ -94,7 +98,7 @@ public class CollectibleParser {
                 depth,
                 estimatedYear,
                 this.parts[8],
-                this.parts[9],
+                type,
                 startingPrice,
                 id
         );
