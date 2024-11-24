@@ -10,6 +10,11 @@ public class CollectibleList {
         this.collectibles = new ArrayList<>();
     }
 
+    //return the list of collectibles
+    public ArrayList<Collectible> listAllCollectibles(){
+        return collectibles;
+    }
+
     // populate collectible list with data from the file
     public void populate(String collectibleFilename) {
         File c = new File(collectibleFilename);
