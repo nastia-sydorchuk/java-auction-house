@@ -25,4 +25,8 @@ public class Car extends Collectible {
     public boolean getHasBeenServiced() {
         return hasBeenServiced;
     }
+
+    //Return the String representation of the car
+    @Override
+    public String toString(){ return "Car " + super.toString() + ": " + make; }
 }

@@ -32,4 +32,8 @@ public class Coin extends Collectible {
     public String getCurrency() {
         return currency;
     }
+
+    //Return the String representation of the coin
+    @Override
+    public String toString(){ return "Coin " + super.toString() + ": " + material; }
 }

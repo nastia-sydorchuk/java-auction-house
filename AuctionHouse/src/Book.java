@@ -33,4 +33,8 @@ public class Book extends Collectible {
     public String getAuthorsName() {
         return authorsName;
     }
+
+    //Return the String representation of the book
+    @Override
+    public String toString(){ return "Book " + super.toString() + ": " + title; }
 }

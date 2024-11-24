@@ -39,6 +39,10 @@ public abstract class Collectible {
         return id;
     }
 
+    //Return the String representation of the collectible
+    @Override
+    public String toString() { return String.valueOf(id); }
+
     public enum ConditionType {
         MINT,
         RESTORED,

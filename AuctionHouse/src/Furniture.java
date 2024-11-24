@@ -47,4 +47,8 @@ public class Furniture extends Collectible {
     public float getDepth() {
         return depth;
     }
+
+    //Return the String representation of the furniture
+    @Override
+    public String toString(){ return "Furniture " + super.toString() + ": " + type; }
 }
