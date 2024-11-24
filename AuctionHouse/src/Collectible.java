@@ -39,6 +39,12 @@ public abstract class Collectible {
         return id;
     }
 
+    //Command to update the collectible's starting price
+    public void changeStartingPrice(float p) { startingPrice = p; }
+
+    //Command to update the collectible's condition
+    public void changeCondition(ConditionType c) { condition = c; }
+
     //Return the String representation of the collectible
     @Override
     public String toString() { return String.valueOf(id); }
