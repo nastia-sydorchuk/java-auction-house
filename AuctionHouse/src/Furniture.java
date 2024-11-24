@@ -51,4 +51,19 @@ public class Furniture extends Collectible {
     //Return the String representation of the furniture
     @Override
     public String toString(){ return "Furniture " + super.toString() + ": " + type; }
+
+    //Return the detailed description of the furniture
+    @Override
+    public String getDetails() {
+        return String.format(
+                "%s%nType: %s%nStyle: %s%nMaker's name: %s%nLength: %.2f%nHeight: %.2f%nDepth: %.2f",
+                super.getDetails(),
+                type,
+                style,
+                makersName,
+                length,
+                height,
+                depth
+        );
+    }
 }

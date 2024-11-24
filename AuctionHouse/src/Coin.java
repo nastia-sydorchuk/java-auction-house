@@ -36,4 +36,17 @@ public class Coin extends Collectible {
     //Return the String representation of the coin
     @Override
     public String toString(){ return "Coin " + super.toString() + ": " + material; }
+
+    //Return the detailed description of the coin
+    @Override
+    public String getDetails() {
+        return String.format(
+                "%s%nMaterial: %s%nPlace of origin: %s%nOriginal value: %.2f%nCurrency: %s",
+                super.getDetails(),
+                material,
+                placeOfOrigin,
+                originalValue,
+                currency
+        );
+    }
 }

@@ -29,4 +29,16 @@ public class Car extends Collectible {
     //Return the String representation of the car
     @Override
     public String toString(){ return "Car " + super.toString() + ": " + make; }
+
+    //Return the detailed description of the book
+    @Override
+    public String getDetails() {
+        return String.format(
+                "%s%nMake: %s%nModel: %s%nHas been serviced: %b",
+                super.getDetails(),
+                make,
+                model,
+                hasBeenServiced
+        );
+    }
 }

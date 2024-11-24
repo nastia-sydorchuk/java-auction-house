@@ -37,4 +37,17 @@ public class Book extends Collectible {
     //Return the String representation of the book
     @Override
     public String toString(){ return "Book " + super.toString() + ": " + title; }
+
+    //Return the detailed description of the book
+    @Override
+    public String getDetails() {
+        return String.format(
+                "%s%nTitle: %s%nEdition: %s%nGenre: %s%nAuthor's name: %s",
+                super.getDetails(),
+                title,
+                edition,
+                genre,
+                authorsName
+        );
+    }
 }
