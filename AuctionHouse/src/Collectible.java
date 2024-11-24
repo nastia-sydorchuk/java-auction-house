@@ -43,6 +43,18 @@ public abstract class Collectible {
     @Override
     public String toString() { return String.valueOf(id); }
 
+    //Return the detailed description of the collectible
+    public String getDetails() {
+        return String.format(
+                "ID: %d%nStarting price: %.2f%nCondition: %s%nOwner: %s%nEstimated year (middle): %d",
+                id,
+                startingPrice,
+                condition.toString(),
+                owner,
+                yearOfOrigin.getMiddleEstimate()
+        );
+    }
+
     public enum ConditionType {
         MINT,
         RESTORED,
