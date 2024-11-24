@@ -15,5 +15,9 @@ public class Main{
         //create a report
         FileWriter fileWriter = new FileWriter();
         fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", collectibleList.createReport());
+
+        AuctionHouseGUI gui = new AuctionHouseGUI("Auction House");
+        gui.setVisible(true);
+        gui.setCollectibleListContent(collectibleList.listAllCollectibles());
     }
 }
