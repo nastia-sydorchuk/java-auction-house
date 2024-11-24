@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
-    private JButton moreInfo;
+    private JButton moreInfo, edit;
     private DefaultListModel<Collectible> collectibleListModel;
     private JList<Collectible> collectibleList;
 
@@ -32,12 +32,14 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
     private void makeLayout(){
         // instantiate components
         moreInfo = new JButton("More info");
+        edit = new JButton("Edit");
         collectibleList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
         JScrollPane scrollList = new JScrollPane(collectibleList);
         // add components to containers
         bottom.add(moreInfo);
+        bottom.add(edit);
         // add containers to frame
         this.add(bottom, BorderLayout.SOUTH);
         this.add(scrollList, BorderLayout.CENTER);
@@ -46,7 +48,9 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
     //private method adding click commands to buttons
     private void setClicks(){
         moreInfo.setActionCommand("moreInfo");
+        edit.setActionCommand("edit");
         moreInfo.addActionListener(this);
+        edit.addActionListener(this);
     }
 
     //event handler for the button clicks
@@ -57,6 +61,22 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
             Collectible c = collectibleList.getSelectedValue();
             String message = c.getDetails();
             JOptionPane.showMessageDialog(this, message, "Collectible details", JOptionPane.INFORMATION_MESSAGE);
+            collectibleList.updateUI();
+        }
+        else if(command.equals("edit")
+                && !collectibleList.isSelectionEmpty()){
+            Collectible c = collectibleList.getSelectedValue();
+            // set new price
+            float initialStartingPrice = c.getStartingPrice();
+            String newPriceInput = JOptionPane.showInputDialog(this, "Enter new price:", initialStartingPrice);
+            if (newPriceInput != null) { // user didn't cancel the input dialog
+                try {
+                    float newPrice = Float.parseFloat(newPriceInput);
+                    c.changeStartingPrice(newPrice);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Please provide a number.", "Invalid input", JOptionPane.ERROR_MESSAGE);
+                }
+            }
             collectibleList.updateUI();
         }
     }
