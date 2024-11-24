@@ -77,11 +77,27 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "Please provide a number.", "Invalid input", JOptionPane.ERROR_MESSAGE);
                 }
             }
+            // set new condition
+            Collectible.ConditionType[] conditions = Collectible.ConditionType.values();
+            Collectible.ConditionType initialCondition = c.getCondition();
+            Collectible.ConditionType newCondition = (Collectible.ConditionType) JOptionPane.showInputDialog(
+                    this,
+                    "Select new condition:",
+                    "Edit Condition",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    conditions,
+                    initialCondition
+            );
+            if (newCondition != null) {
+                c.changeCondition(newCondition);
+            }
+            // update UI
             collectibleList.updateUI();
         }
     }
 
-     //command to set the content of the device list
+    //command to set the content of the device list
     public void setCollectibleListContent(ArrayList<Collectible> collectibles){
         collectibleListModel = new DefaultListModel<>();
         collectibleListModel.addAll(collectibles);
