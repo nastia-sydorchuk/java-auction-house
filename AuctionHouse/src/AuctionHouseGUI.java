@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
-    private JButton moreInfo, edit, sortById, sortByPrice;
+    private JButton moreInfo, edit, sortById, sortByPrice, generateSummary;
     private JList<Collectible> collectibleJList;
     private CollectibleList collectibleList;
 
@@ -35,6 +35,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         edit = new JButton("Edit");
         sortById = new JButton("Sort by ID");
         sortByPrice = new JButton("Sort by starting price");
+        generateSummary = new JButton("Generate Summary");
         collectibleJList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
@@ -45,6 +46,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         top.add(sortByPrice);
         bottom.add(moreInfo);
         bottom.add(edit);
+        bottom.add(generateSummary);
         // add containers to frame
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
@@ -57,10 +59,12 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         edit.setActionCommand("edit");
         sortById.setActionCommand("sortById");
         sortByPrice.setActionCommand("sortByPrice");
+        generateSummary.setActionCommand("generateSummary");
         moreInfo.addActionListener(this);
         edit.addActionListener(this);
         sortById.addActionListener(this);
         sortByPrice.addActionListener(this);
+        generateSummary.addActionListener(this);
     }
 
     //event handler for the button clicks
@@ -112,6 +116,10 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         else if(command.equals("sortByPrice")){
             collectibleList.sortCollectiblesByPrice();
             this.setCollectibleListContent(collectibleList.listAllCollectibles());
+        }
+        else if(command.equals("generateSummary")){
+            collectibleList.writeReportToFile();
+            JOptionPane.showMessageDialog(this, "Summary generated successfully!");
         }
     }
 
