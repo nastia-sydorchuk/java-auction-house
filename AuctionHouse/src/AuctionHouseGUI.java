@@ -7,9 +7,9 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
-    private JButton moreInfo, edit;
-    private DefaultListModel<Collectible> collectibleListModel;
+    private JButton moreInfo, edit, sortById;
     private JList<Collectible> collectibleList;
+    private CollectibleList collectibles;
 
     //constructor
     public AuctionHouseGUI(String title){
@@ -33,14 +33,18 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         // instantiate components
         moreInfo = new JButton("More info");
         edit = new JButton("Edit");
+        sortById = new JButton("Sort by ID");
         collectibleList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
+        JPanel top = new JPanel();
         JScrollPane scrollList = new JScrollPane(collectibleList);
         // add components to containers
+        top.add(sortById);
         bottom.add(moreInfo);
         bottom.add(edit);
         // add containers to frame
+        this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
         this.add(scrollList, BorderLayout.CENTER);
     }
@@ -49,8 +53,10 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
     private void setClicks(){
         moreInfo.setActionCommand("moreInfo");
         edit.setActionCommand("edit");
+        sortById.setActionCommand("sortById");
         moreInfo.addActionListener(this);
         edit.addActionListener(this);
+        sortById.addActionListener(this);
     }
 
     //event handler for the button clicks
@@ -95,12 +101,23 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
             // update UI
             collectibleList.updateUI();
         }
+        else if(command.equals("sortById")){
+            collectibles.sortCollectiblesById();
+            this.setCollectibleListContent(collectibles.listAllCollectibles());
+            collectibleList.updateUI();
+        }
     }
 
-    //command to set the content of the device list
-    public void setCollectibleListContent(ArrayList<Collectible> collectibles){
-        collectibleListModel = new DefaultListModel<>();
+    //command to set the content of the collectible list
+    private void setCollectibleListContent(ArrayList<Collectible> collectibles){
+        DefaultListModel<Collectible> collectibleListModel = new DefaultListModel<>();
         collectibleListModel.addAll(collectibles);
         collectibleList.setModel(collectibleListModel);
+    }
+
+    //command to update the collectibles and the content of the collectible list
+    public void setCollectibleList(CollectibleList collectibles){
+        this.collectibles = collectibles;
+        this.setCollectibleListContent(collectibles.listAllCollectibles());
     }
 }

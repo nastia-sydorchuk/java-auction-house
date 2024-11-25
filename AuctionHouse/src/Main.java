@@ -18,6 +18,6 @@ public class Main{
 
         AuctionHouseGUI gui = new AuctionHouseGUI("Auction House");
         gui.setVisible(true);
-        gui.setCollectibleListContent(collectibleList.listAllCollectibles());
+        gui.setCollectibleList(collectibleList);
     }
 }
