@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
     private JButton moreInfo, edit, sortById, sortByPrice;
-    private JList<Collectible> collectibleList;
-    private CollectibleList collectibles;
+    private JList<Collectible> collectibleJList;
+    private CollectibleList collectibleList;
 
     //constructor
     public AuctionHouseGUI(String title){
@@ -35,11 +35,11 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         edit = new JButton("Edit");
         sortById = new JButton("Sort by ID");
         sortByPrice = new JButton("Sort by starting price");
-        collectibleList = new JList<>();
+        collectibleJList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
         JPanel top = new JPanel();
-        JScrollPane scrollList = new JScrollPane(collectibleList);
+        JScrollPane scrollList = new JScrollPane(collectibleJList);
         // add components to containers
         top.add(sortById);
         top.add(sortByPrice);
@@ -67,15 +67,15 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event){
         String command = event.getActionCommand();
         if(command.equals("moreInfo")
-                && !collectibleList.isSelectionEmpty()){
-            Collectible c = collectibleList.getSelectedValue();
+                && !collectibleJList.isSelectionEmpty()){
+            Collectible c = collectibleJList.getSelectedValue();
             String message = c.getDetails();
             JOptionPane.showMessageDialog(this, message, "Collectible details", JOptionPane.INFORMATION_MESSAGE);
-            collectibleList.updateUI();
+            collectibleJList.updateUI();
         }
         else if(command.equals("edit")
-                && !collectibleList.isSelectionEmpty()){
-            Collectible c = collectibleList.getSelectedValue();
+                && !collectibleJList.isSelectionEmpty()){
+            Collectible c = collectibleJList.getSelectedValue();
             // set new price
             float initialStartingPrice = c.getStartingPrice();
             String newPriceInput = JOptionPane.showInputDialog(this, "Enter new price:", initialStartingPrice);
@@ -103,15 +103,15 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
                 c.changeCondition(newCondition);
             }
             // update UI
-            collectibleList.updateUI();
+            collectibleJList.updateUI();
         }
         else if(command.equals("sortById")){
-            collectibles.sortCollectiblesById();
-            this.setCollectibleListContent(collectibles.listAllCollectibles());
+            collectibleList.sortCollectiblesById();
+            this.setCollectibleListContent(collectibleList.listAllCollectibles());
         }
         else if(command.equals("sortByPrice")){
-            collectibles.sortCollectiblesByPrice();
-            this.setCollectibleListContent(collectibles.listAllCollectibles());
+            collectibleList.sortCollectiblesByPrice();
+            this.setCollectibleListContent(collectibleList.listAllCollectibles());
         }
     }
 
@@ -119,12 +119,12 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
     private void setCollectibleListContent(ArrayList<Collectible> collectibles){
         DefaultListModel<Collectible> collectibleListModel = new DefaultListModel<>();
         collectibleListModel.addAll(collectibles);
-        collectibleList.setModel(collectibleListModel);
+        collectibleJList.setModel(collectibleListModel);
     }
 
-    //command to update the collectibles and the content of the collectible list
+    //command to update the collectibleList and the content of the collectible list
     public void setCollectibleList(CollectibleList collectibles){
-        this.collectibles = collectibles;
+        this.collectibleList = collectibles;
         this.setCollectibleListContent(collectibles.listAllCollectibles());
     }
 }
