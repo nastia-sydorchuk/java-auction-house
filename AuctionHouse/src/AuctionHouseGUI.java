@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
-    private JButton moreInfo, edit, sortById;
+    private JButton moreInfo, edit, sortById, sortByPrice;
     private JList<Collectible> collectibleList;
     private CollectibleList collectibles;
 
@@ -34,6 +34,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         moreInfo = new JButton("More info");
         edit = new JButton("Edit");
         sortById = new JButton("Sort by ID");
+        sortByPrice = new JButton("Sort by starting price");
         collectibleList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
@@ -41,6 +42,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         JScrollPane scrollList = new JScrollPane(collectibleList);
         // add components to containers
         top.add(sortById);
+        top.add(sortByPrice);
         bottom.add(moreInfo);
         bottom.add(edit);
         // add containers to frame
@@ -54,9 +56,11 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         moreInfo.setActionCommand("moreInfo");
         edit.setActionCommand("edit");
         sortById.setActionCommand("sortById");
+        sortByPrice.setActionCommand("sortByPrice");
         moreInfo.addActionListener(this);
         edit.addActionListener(this);
         sortById.addActionListener(this);
+        sortByPrice.addActionListener(this);
     }
 
     //event handler for the button clicks
@@ -104,7 +108,10 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         else if(command.equals("sortById")){
             collectibles.sortCollectiblesById();
             this.setCollectibleListContent(collectibles.listAllCollectibles());
-            collectibleList.updateUI();
+        }
+        else if(command.equals("sortByPrice")){
+            collectibles.sortCollectiblesByPrice();
+            this.setCollectibleListContent(collectibles.listAllCollectibles());
         }
     }
 
