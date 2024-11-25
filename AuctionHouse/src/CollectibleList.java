@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class CollectibleList {
@@ -13,6 +14,15 @@ public class CollectibleList {
     //return the list of collectibles
     public ArrayList<Collectible> listAllCollectibles(){
         return collectibles;
+    }
+
+    //sort list of collectibles by Id
+    public void sortCollectiblesById(){
+        Collections.sort(collectibles, new IdComparator());
+    }
+    //sort list of collectibles by starting price
+    public void sortCollectiblesByPrice(){
+        Collections.sort(collectibles, new PriceComparator());
     }
 
     // populate collectible list with data from the file
