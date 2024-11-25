@@ -13,8 +13,7 @@ public class Main{
         System.out.println(collectibleList);
 
         //create a report
-        FileWriter fileWriter = new FileWriter();
-        fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", collectibleList.createReport());
+        collectibleList.writeReportToFile();
 
         AuctionHouseGUI gui = new AuctionHouseGUI("Auction House");
         gui.setVisible(true);

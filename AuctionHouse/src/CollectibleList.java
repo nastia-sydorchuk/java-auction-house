@@ -253,4 +253,9 @@ public class CollectibleList {
 
         return report;
     }
+
+    public void writeReportToFile() {
+        FileWriter fileWriter = new FileWriter();
+        fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", this.createReport());
+    }
 }
