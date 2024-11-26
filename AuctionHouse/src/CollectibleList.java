@@ -117,17 +117,19 @@ public class CollectibleList {
         Collectible[] items = new Collectible[3];
 
         for (Collectible c : this.collectibles) {
-            int difference = c.getYearOfOrigin().getDifference();
+            if (c.getYearOfOrigin() != null) {
+                int difference = c.getYearOfOrigin().getDifference();
 
-            if (items[0] == null || difference > items[0].getYearOfOrigin().getDifference()) {
-                items[2] = items[1];
-                items[1] = items[0];
-                items[0] = c;
-            } else if (items[1] == null || difference > items[1].getYearOfOrigin().getDifference()) {
-                items[2] = items[1];
-                items[1] = c;
-            } else if (items[2] == null || difference > items[2].getYearOfOrigin().getDifference()) {
-                items[2] = c;
+                if (items[0] == null || difference > items[0].getYearOfOrigin().getDifference()) {
+                    items[2] = items[1];
+                    items[1] = items[0];
+                    items[0] = c;
+                } else if (items[1] == null || difference > items[1].getYearOfOrigin().getDifference()) {
+                    items[2] = items[1];
+                    items[1] = c;
+                } else if (items[2] == null || difference > items[2].getYearOfOrigin().getDifference()) {
+                    items[2] = c;
+                }
             }
         }
 
