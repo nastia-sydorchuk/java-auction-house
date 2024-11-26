@@ -34,7 +34,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         moreInfo = new JButton("More info");
         edit = new JButton("Edit");
         sortById = new JButton("Sort by ID");
-        sortByPrice = new JButton("Sort by starting price");
+        sortByPrice = new JButton("Sort by price");
         generateSummary = new JButton("Generate Summary");
         save = new JButton("Save");
         collectibleJList = new JList<>();
@@ -45,10 +45,10 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         // add components to containers
         top.add(sortById);
         top.add(sortByPrice);
-        top.add(save);
-        bottom.add(moreInfo);
+        top.add(moreInfo);
         bottom.add(edit);
         bottom.add(generateSummary);
+        bottom.add(save);
         // add containers to frame
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
