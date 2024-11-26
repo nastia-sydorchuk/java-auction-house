@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class AuctionHouseGUI extends JFrame implements ActionListener {
-    private JButton moreInfo, edit, sortById, sortByPrice, generateSummary;
+    private JButton moreInfo, edit, sortById, sortByPrice, generateSummary, save;
     private JList<Collectible> collectibleJList;
     private CollectibleList collectibleList;
 
@@ -36,6 +36,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         sortById = new JButton("Sort by ID");
         sortByPrice = new JButton("Sort by starting price");
         generateSummary = new JButton("Generate Summary");
+        save = new JButton("Save");
         collectibleJList = new JList<>();
         // create containers
         JPanel bottom = new JPanel();
@@ -44,6 +45,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         // add components to containers
         top.add(sortById);
         top.add(sortByPrice);
+        top.add(save);
         bottom.add(moreInfo);
         bottom.add(edit);
         bottom.add(generateSummary);
@@ -60,11 +62,14 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         sortById.setActionCommand("sortById");
         sortByPrice.setActionCommand("sortByPrice");
         generateSummary.setActionCommand("generateSummary");
+        save.setActionCommand("save");
+
         moreInfo.addActionListener(this);
         edit.addActionListener(this);
         sortById.addActionListener(this);
         sortByPrice.addActionListener(this);
         generateSummary.addActionListener(this);
+        save.addActionListener(this);
     }
 
     //event handler for the button clicks
@@ -120,6 +125,10 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
         else if(command.equals("generateSummary")){
             collectibleList.writeReportToFile();
             JOptionPane.showMessageDialog(this, "Summary generated successfully!");
+        }
+        else if(command.equals("save")){
+            collectibleList.saveUpdatedCollectibleList("AuctionHouse/datasets/furniture_items_updated.csv");
+            JOptionPane.showMessageDialog(this, "Data saved successfully!");
         }
     }
 
