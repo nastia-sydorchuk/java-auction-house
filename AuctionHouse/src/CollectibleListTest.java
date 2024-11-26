@@ -30,7 +30,7 @@ public class CollectibleListTest {
         Collectible validCollectibleFive = new Book("1984","Second","Fiction", "George Orwell", estimatedYearFive, "C5", Collectible.ConditionType.MINT, 100, 5);
         allValidCollectibles.addOneCollectible(validCollectibleFive);
 
-        // list of three valid collectibles
+        // list of two valid collectibles
         fewerCollectibles = new CollectibleList();
         fewerCollectibles.addOneCollectible(validCollectibleOne);
         fewerCollectibles.addOneCollectible(validCollectibleTwo);
@@ -81,5 +81,63 @@ public class CollectibleListTest {
         EstimatedYear estimatedYearSixteen = new EstimatedYear(2000, 2020);
         Collectible validCollectibleSixteen = new Book("1984","Second","Fiction", "George Orwell", estimatedYearSixteen, "C5", Collectible.ConditionType.MINT, 100, 16);
         negativeDifferenceCollectibles.addOneCollectible(validCollectibleSixteen);
+    }
+
+    @Test
+    @DisplayName("Find items with the top 3 most differences in year estimates")
+    void testFindTopThreeWithMostYearsDifferences(){
+        // all valid collectibles
+        Collectible[] topThreeValid = allValidCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeValid);
+        assertEquals(3, topThreeValid.length);
+        assertEquals(50, topThreeValid[0].getYearOfOrigin().getDifference());
+        assertEquals(40, topThreeValid[1].getYearOfOrigin().getDifference());
+        assertEquals(25, topThreeValid[2].getYearOfOrigin().getDifference());
+
+        // fewer collectibles than expected
+        Collectible[] topThreeFewer = fewerCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeFewer);
+        assertEquals(3, topThreeValid.length);
+        assertEquals(50, topThreeFewer[0].getYearOfOrigin().getDifference());
+        assertEquals(5, topThreeFewer[1].getYearOfOrigin().getDifference());
+        assertNull(topThreeFewer[2]);
+
+        // empty collectibles
+        Collectible[] topThreeEmpty = emptyCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeEmpty);
+        assertEquals(3, topThreeEmpty.length);
+        assertNull(topThreeEmpty[0]);
+        assertNull(topThreeEmpty[1]);
+        assertNull(topThreeEmpty[2]);
+
+        // collectibles with the same difference
+        Collectible[] topThreeSameDifference = sameDifferenceCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeSameDifference);
+        assertEquals(3, topThreeSameDifference.length);
+        assertEquals(10, topThreeSameDifference[0].getYearOfOrigin().getDifference());
+        assertEquals(10, topThreeSameDifference[1].getYearOfOrigin().getDifference());
+        assertEquals(10, topThreeSameDifference[2].getYearOfOrigin().getDifference());
+
+        // collectibles with one collectible's year set to 0
+        Collectible[] topThreeNullYear = nullYearCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeNullYear);
+        assertEquals(3, topThreeNullYear.length);
+        assertEquals(14, topThreeNullYear[0].getYearOfOrigin().getDifference());
+        assertEquals(10, topThreeNullYear[1].getYearOfOrigin().getDifference());
+        assertNull(topThreeNullYear[2]);
+
+        // collectibles with small and large differences
+        Collectible[] topThreeSmallAndLargeDifferences = smallAndLargeDifferencesCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeSmallAndLargeDifferences);
+        assertEquals(2000, topThreeSmallAndLargeDifferences[0].getYearOfOrigin().getDifference());
+        assertEquals(10, topThreeSmallAndLargeDifferences[1].getYearOfOrigin().getDifference());
+        assertEquals(0, topThreeSmallAndLargeDifferences[2].getYearOfOrigin().getDifference());
+
+        // collectibles with one invalid range
+        Collectible[] topThreeNegativeDifferences = negativeDifferenceCollectibles.findTopThreeWithMostYearsDifferences();
+        assertNotNull(topThreeNegativeDifferences);
+        assertEquals(20, topThreeNegativeDifferences[0].getYearOfOrigin().getDifference());
+        assertEquals(-5, topThreeNegativeDifferences[1].getYearOfOrigin().getDifference()); // should invalid ranges be included
+        assertNull(topThreeNegativeDifferences[2]);
     }
 }
