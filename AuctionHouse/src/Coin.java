@@ -63,4 +63,24 @@ public class Coin extends Collectible {
                 super.toCSVAttributes()
         );
     }
+
+    public static Coin parseCoinFromLine(String[] parts) {
+        float originalValue = CollectibleParser.parseFloat(3, parts);
+        int id = CollectibleParser.parseInt(9, parts);
+        EstimatedYear estimatedYear = CollectibleParser.parseEstimatedYear(parts[5]);
+        float startingPrice = CollectibleParser.parseFloat(8, parts);
+        Collectible.ConditionType type = CollectibleParser.parseConditionType(parts[7]);
+
+        return new Coin(
+                parts[1],
+                parts[2],
+                originalValue,
+                parts[4],
+                estimatedYear,
+                parts[6],
+                type,
+                startingPrice,
+                id
+        );
+    }
 }

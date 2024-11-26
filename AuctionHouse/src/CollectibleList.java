@@ -29,12 +29,11 @@ public class CollectibleList {
     public void populate(String collectibleFilename) {
         File c = new File(collectibleFilename);
         try (Scanner scanner = new Scanner(c)) {
-            CollectibleParser parser = new CollectibleParser();
             byte count = 0;
             while (scanner.hasNextLine()) {
                 String inputLine = scanner.nextLine();
                 count++;
-                Collectible collectible = parser.parseCollectibleFromLine(inputLine, count);
+                Collectible collectible = CollectibleParser.parseCollectibleFromLine(inputLine, count);
                 if (collectible != null) {
                     this.addOneCollectible(collectible);
                 }

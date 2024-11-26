@@ -64,4 +64,23 @@ public class Book extends Collectible {
                 super.toCSVAttributes()
         );
     }
+
+    public static Book parseBookFromLine(String[] parts) {
+        int id = CollectibleParser.parseInt(9, parts);
+        EstimatedYear estimatedYear = CollectibleParser.parseEstimatedYear(parts[5]);
+        float startingPrice = CollectibleParser.parseFloat(8, parts);
+        Collectible.ConditionType type = CollectibleParser.parseConditionType(parts[7]);
+
+        return new Book(
+                parts[1],
+                parts[2],
+                parts[3],
+                parts[4],
+                estimatedYear,
+                parts[6],
+                type,
+                startingPrice,
+                id
+        );
+    }
 }

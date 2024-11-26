@@ -54,4 +54,22 @@ public class Car extends Collectible {
                 super.toCSVAttributes()
         );
     }
+
+    public static Car parseCarFromLine(String[] parts) {
+        int id = CollectibleParser.parseInt(8, parts);
+        EstimatedYear estimatedYear = CollectibleParser.parseEstimatedYear(parts[4]);
+        float startingPrice = CollectibleParser.parseFloat(7, parts);
+        Collectible.ConditionType type = CollectibleParser.parseConditionType(parts[6]);
+
+        return new Car(
+                parts[1],
+                parts[2],
+                Boolean.parseBoolean(parts[3]),
+                estimatedYear,
+                parts[5],
+                type,
+                startingPrice,
+                id
+        );
+    }
 }

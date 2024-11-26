@@ -1,16 +1,15 @@
 public class CollectibleParser {
-    String[] parts;
-    public Collectible parseCollectibleFromLine(String line, byte count) {
-        this.parts = line.split(",");
+    public static Collectible parseCollectibleFromLine(String line, byte count) {
+        String[] parts = line.split(",");
 
         try {
-            String type = this.parts[0];
+            String type = parts[0];
 
             switch(type) {
-                case "book": return parseBookFromLine();
-                case "coin": return parseCoinFromLine();
-                case "car": return parseCarFromLine();
-                case "furniture": return parseFurnitureFromLine();
+                case "book": return Book.parseBookFromLine(parts);
+                case "coin": return Coin.parseCoinFromLine(parts);
+                case "car": return Car.parseCarFromLine(parts);
+                case "furniture": return Furniture.parseFurnitureFromLine(parts);
                 default:
                     System.out.println("Unknown type " + type + " in line " + count);
                     return null;
@@ -21,91 +20,8 @@ public class CollectibleParser {
         }
     }
 
-    public Book parseBookFromLine() {
-        int id = this.parseInt(9);
-        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
-        float startingPrice = this.parseFloat(8);
-        Collectible.ConditionType type = this.parseConditionType(this.parts[7]);
-
-        return new Book(
-                this.parts[1],
-                this.parts[2],
-                this.parts[3],
-                this.parts[4],
-                estimatedYear,
-                this.parts[6],
-                type,
-                startingPrice,
-                id
-        );
-    }
-
-    public Coin parseCoinFromLine() {
-        float originalValue = this.parseFloat(3);
-
-        int id = this.parseInt(9);
-        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[5]);
-        float startingPrice = this.parseFloat(8);
-        Collectible.ConditionType type = this.parseConditionType(this.parts[7]);
-
-        return new Coin(
-                this.parts[1],
-                this.parts[2],
-                originalValue,
-                this.parts[4],
-                estimatedYear,
-                this.parts[6],
-                type,
-                startingPrice,
-                id
-        );
-    }
-
-    public Car parseCarFromLine() {
-        int id = this.parseInt(8);
-        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[4]);
-        float startingPrice = this.parseFloat(7);
-        Collectible.ConditionType type = this.parseConditionType(this.parts[6]);
-
-        return new Car(
-                this.parts[1],
-                this.parts[2],
-                Boolean.parseBoolean(this.parts[3]),
-                estimatedYear,
-                this.parts[5],
-                type,
-                startingPrice,
-                id
-        );
-    }
-
-    public Furniture parseFurnitureFromLine() {
-        float length = this.parseFloat(4);
-        float height = this.parseFloat(5);
-        float depth = this.parseFloat(6);
-
-        int id = this.parseInt(11);
-        EstimatedYear estimatedYear = this.parseEstimatedYear(this.parts[7]);
-        float startingPrice = this.parseFloat(10);
-        Collectible.ConditionType type = this.parseConditionType(this.parts[9]);
-
-        return new Furniture(
-                this.parts[1],
-                this.parts[2],
-                this.parts[3],
-                length,
-                height,
-                depth,
-                estimatedYear,
-                this.parts[8],
-                type,
-                startingPrice,
-                id
-        );
-    }
-
-    private float parseFloat(int index) {
-        String numString = this.parts[index];
+    public static float parseFloat(int index, String[] parts) {
+        String numString = parts[index];
         try {
             String numStringTrimmed = numString.trim();
             return Float.parseFloat(numStringTrimmed);
@@ -115,8 +31,8 @@ public class CollectibleParser {
         }
     }
 
-    private int parseInt(int index) {
-        String numString = this.parts[index];
+    public static int parseInt(int index, String[] parts) {
+        String numString = parts[index];
 
         try {
             String numStringTrimmed = numString.trim();
@@ -127,7 +43,7 @@ public class CollectibleParser {
         }
     }
 
-    private int parseInt(String numString) {
+    public static int parseInt(String numString) {
         try {
             String numStringTrimmed = numString.trim();
             return Integer.parseInt(numStringTrimmed);
@@ -137,7 +53,7 @@ public class CollectibleParser {
         }
     }
 
-    private EstimatedYear parseEstimatedYear(String estimatedYear) {
+    public static EstimatedYear parseEstimatedYear(String estimatedYear) {
         try {
             if (estimatedYear.contains("-")) { // Check if it's a range
                 String[] yearRange = estimatedYear.split("-");
@@ -155,7 +71,7 @@ public class CollectibleParser {
         }
     }
 
-    public Collectible.ConditionType parseConditionType(String input) {
+    public static Collectible.ConditionType parseConditionType(String input) {
         try {
             return Collectible.ConditionType.valueOf(input.trim().toUpperCase());
         } catch (IllegalArgumentException e) {

@@ -82,4 +82,29 @@ public class Furniture extends Collectible {
                 super.toCSVAttributes()
         );
     }
+
+    public static Furniture parseFurnitureFromLine(String[] parts) {
+        float length = CollectibleParser.parseFloat(4, parts);
+        float height = CollectibleParser.parseFloat(5, parts);
+        float depth = CollectibleParser.parseFloat(6, parts);
+
+        int id = CollectibleParser.parseInt(11, parts);
+        EstimatedYear estimatedYear = CollectibleParser.parseEstimatedYear(parts[7]);
+        float startingPrice = CollectibleParser.parseFloat(10, parts);
+        Collectible.ConditionType type = CollectibleParser.parseConditionType(parts[9]);
+
+        return new Furniture(
+                parts[1],
+                parts[2],
+                parts[3],
+                length,
+                height,
+                depth,
+                estimatedYear,
+                parts[8],
+                type,
+                startingPrice,
+                id
+        );
+    }
 }
