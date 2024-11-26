@@ -258,4 +258,16 @@ public class CollectibleList {
         FileWriter fileWriter = new FileWriter();
         fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", this.createReport());
     }
+
+    public void saveUpdatedCollectibleList(String collectibleFilename) {
+        File f = new File(collectibleFilename);
+
+        try(PrintWriter writer = new PrintWriter(f)) {
+            for (Collectible c : this.collectibles) {
+                writer.println(c.toCSVAttributes());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
