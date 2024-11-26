@@ -41,4 +41,17 @@ public class Car extends Collectible {
                 hasBeenServiced
         );
     }
+
+    //Return car specific CSV properties
+    @Override
+    public String toCSVAttributes() {
+        return String.format(
+                "%s,%s,%s,%b,%s",
+                "car",
+                make,
+                model,
+                hasBeenServiced,
+                super.toCSVAttributes()
+        );
+    }
 }

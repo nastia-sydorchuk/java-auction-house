@@ -50,4 +50,18 @@ public class Book extends Collectible {
                 authorsName
         );
     }
+
+    //Return book specific CSV properties
+    @Override
+    public String toCSVAttributes() {
+        return String.format(
+                "%s,%s,%s,%s,%s,%s",
+                "book",
+                title,
+                edition,
+                genre,
+                authorsName,
+                super.toCSVAttributes()
+        );
+    }
 }

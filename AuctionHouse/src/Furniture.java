@@ -66,4 +66,20 @@ public class Furniture extends Collectible {
                 depth
         );
     }
+
+    //Return furniture specific CSV properties
+    @Override
+    public String toCSVAttributes() {
+        return String.format(
+                "%s,%s,%s,%s,%.2f,%.2f,%.2f,%s",
+                "furniture",
+                type,
+                style,
+                makersName,
+                length,
+                height,
+                depth,
+                super.toCSVAttributes()
+        );
+    }
 }

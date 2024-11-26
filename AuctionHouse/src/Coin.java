@@ -49,4 +49,18 @@ public class Coin extends Collectible {
                 currency
         );
     }
+
+    //Return coin specific CSV properties
+    @Override
+    public String toCSVAttributes() {
+        return String.format(
+                "%s,%s,%s,%.2f,%s,%s",
+                "coin",
+                material,
+                placeOfOrigin,
+                originalValue,
+                currency,
+                super.toCSVAttributes()
+        );
+    }
 }

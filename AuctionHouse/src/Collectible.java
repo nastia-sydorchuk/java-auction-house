@@ -61,6 +61,18 @@ public abstract class Collectible {
         );
     }
 
+    //Return general CSV properties of the collectible
+    public String toCSVAttributes() {
+        String estimatedYear;
+        if (yearOfOrigin.getLow() == yearOfOrigin.getHigh()) { // one estimated year of origin
+            estimatedYear = String.format("%d", yearOfOrigin.getLow());
+        } else { // two estimated years of origin
+            estimatedYear = String.format("%d-%d", yearOfOrigin.getLow(), yearOfOrigin.getHigh());
+        }
+
+        return String.format("%s,%s,%s,%.2f,%d", estimatedYear, owner, condition.toString(), startingPrice, id);
+    }
+
     public enum ConditionType {
         MINT,
         RESTORED,
