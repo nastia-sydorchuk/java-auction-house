@@ -237,22 +237,17 @@ public class CollectibleList {
         Collectible mostExpensiveItem = this.findMostExpensivePrice();
         float[] startingPricesArray = this.extractPrices();
 
-        String report = "Total number of items in inventory is " + this.getSize() + "\n";
-        report += "The oldest item using low estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin().getLow() + "\n";
-        report += "The newest item using high estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin().getHigh() + "\n";
-        report += "The oldest item using middle estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
-        report += "The newest item using middle estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n";
-        report += "The top three items with the most years differences are: ID " + itemsWithMostYearsDifferences[0].getId() + ", difference: " + itemsWithMostYearsDifferences[0].getYearOfOrigin().getDifference()
-                + ", ID " + itemsWithMostYearsDifferences[1].getId() + ", difference: " + itemsWithMostYearsDifferences[1].getYearOfOrigin().getDifference()
-                + ", ID " + itemsWithMostYearsDifferences[2].getId() + ", difference: " + itemsWithMostYearsDifferences[2].getYearOfOrigin().getDifference() + "\n";
-
-        report += "The least expensive item is under ID " + leastExpensiveItem.getId() + ", starting price: " + leastExpensiveItem.getStartingPrice() + "\n";
-        report += "The most expensive item is under ID " + mostExpensiveItem.getId() + ", starting price: " + mostExpensiveItem.getStartingPrice() + "\n";
-        report += "Breakdown of items by condition:\n" + this.getBreakdownByCondition();
-        report += "The average deviation of starting prices is " + this.calculateAverageDeviation(startingPricesArray) + "\n";
-        report += "The standard deviation of starting prices is " + this.calculateStandardDeviation(startingPricesArray) + "\n";
-
-        return report;
+        return "Total number of items in inventory is " + this.getSize() + "\n" + "The oldest item using low estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin().getLow() + "\n" +
+                "The oldest item using low estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItem.getYearOfOrigin().getLow() + "\n" +
+                "The newest item using high estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItem.getYearOfOrigin().getHigh() + "\n" +
+                "The oldest item using middle estimate is under ID " + oldestItem.getId() + ", year of origin: " + oldestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n" +
+                "The newest item using middle estimate is under ID " + newestItem.getId() + ", year of origin: " + newestItemMiddle.getYearOfOrigin().getMiddleEstimate() + "\n" +
+                "The top three items with the most years differences are: ID " + itemsWithMostYearsDifferences[0].getId() + ", difference: " + itemsWithMostYearsDifferences[0].getYearOfOrigin().getDifference() + ", ID " + itemsWithMostYearsDifferences[1].getId() + ", difference: " + itemsWithMostYearsDifferences[1].getYearOfOrigin().getDifference() + ", ID " + itemsWithMostYearsDifferences[2].getId() + ", difference: " + itemsWithMostYearsDifferences[2].getYearOfOrigin().getDifference() + "\n" +
+                "The least expensive item is under ID " + leastExpensiveItem.getId() + ", starting price: " + leastExpensiveItem.getStartingPrice() + "\n" +
+                "The most expensive item is under ID " + mostExpensiveItem.getId() + ", starting price: " + mostExpensiveItem.getStartingPrice() + "\n" +
+                "Breakdown of items by condition:\n" + this.getBreakdownByCondition() +
+                "The average deviation of starting prices is " + this.calculateAverageDeviation(startingPricesArray) + "\n" +
+                "The standard deviation of starting prices is " + this.calculateStandardDeviation(startingPricesArray) + "\n";
     }
 
     public void writeReportToFile() {
