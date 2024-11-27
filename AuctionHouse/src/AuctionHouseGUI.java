@@ -127,7 +127,7 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Summary generated successfully!");
         }
         else if(command.equals("save")){
-            collectibleList.saveUpdatedCollectibleList("AuctionHouse/datasets/furniture_items_updated.csv");
+            collectibleList.saveUpdatedCollectibleList("AuctionHouse/datasets/collectible_items.csv");
             JOptionPane.showMessageDialog(this, "Data saved successfully!");
         }
     }

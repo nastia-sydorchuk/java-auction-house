@@ -16,7 +16,7 @@ public class CollectibleList {
         return collectibles;
     }
 
-    //sort list of collectibles by Id
+    //sort list of collectibles by ID
     public void sortCollectiblesById(){
         Collections.sort(collectibles, new IdComparator());
     }
@@ -252,15 +252,18 @@ public class CollectibleList {
 
     public void writeReportToFile() {
         FileWriter fileWriter = new FileWriter();
-        fileWriter.writeReportToFile("AuctionHouse/datasets/furniture_statistics.txt", this.createReport());
+        fileWriter.writeReportToFile("AuctionHouse/datasets/collectible_statistics.txt", this.createReport());
     }
 
     public void saveUpdatedCollectibleList(String collectibleFilename) {
         File f = new File(collectibleFilename);
 
         try(PrintWriter writer = new PrintWriter(f)) {
-            for (Collectible c : this.collectibles) {
-                writer.println(c.toCSVAttributes());
+            for (int i = 0; i < this.collectibles.size(); i++) {
+                writer.print(this.collectibles.get(i).toCSVAttributes());
+                if (i < this.collectibles.size() - 1) { // check if it's the last item
+                    writer.println();
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
