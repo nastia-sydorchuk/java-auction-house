@@ -95,6 +95,8 @@ public class AuctionHouseGUI extends JFrame implements ActionListener {
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(this, "Please provide a number.", "Invalid input", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                return;
             }
             // set new condition
             Collectible.ConditionType[] conditions = Collectible.ConditionType.values();
