@@ -9,6 +9,7 @@ public class CollectibleListTest {
     CollectibleList nullYearCollectibles;
     CollectibleList smallAndLargeDifferencesCollectibles;
     CollectibleList negativeDifferenceCollectibles;
+    CollectibleList nullCollectibles;
 
     @BeforeEach
     void init() {
@@ -104,11 +105,7 @@ public class CollectibleListTest {
 
         // empty collectibles
         Collectible[] topThreeEmpty = emptyCollectibles.findTopThreeWithMostYearsDifferences();
-        assertNotNull(topThreeEmpty);
-        assertEquals(3, topThreeEmpty.length);
-        assertNull(topThreeEmpty[0]);
-        assertNull(topThreeEmpty[1]);
-        assertNull(topThreeEmpty[2]);
+        assertEquals(0, topThreeEmpty.length);
 
         // collectibles with the same difference
         Collectible[] topThreeSameDifference = sameDifferenceCollectibles.findTopThreeWithMostYearsDifferences();
@@ -139,5 +136,9 @@ public class CollectibleListTest {
         assertEquals(20, topThreeNegativeDifferences[0].getYearOfOrigin().getDifference());
         assertEquals(-5, topThreeNegativeDifferences[1].getYearOfOrigin().getDifference()); // should invalid ranges be included
         assertNull(topThreeNegativeDifferences[2]);
+
+        // collectibles is null
+        // Collectible[] topThreeNull = nullCollectibles.findTopThreeWithMostYearsDifferences();
+        // assertEquals(0, topThreeEmpty.length);
     }
 }

@@ -113,6 +113,10 @@ public class CollectibleList {
 
     //return items with the top 3 most differences in year estimates
     public Collectible[] findTopThreeWithMostYearsDifferences() {
+        if (this.collectibles == null || this.collectibles.isEmpty()) {
+            return new Collectible[0];
+        }
+
         Collectible[] items = new Collectible[3];
 
         for (Collectible c : this.collectibles) {
