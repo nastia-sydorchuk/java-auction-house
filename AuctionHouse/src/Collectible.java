@@ -47,7 +47,7 @@ public abstract class Collectible {
 
     //Return the String representation of the collectible
     @Override
-    public String toString() { return String.valueOf(id); }
+    public String toString() { return id + ", starting price: " + startingPrice; }
 
     //Return the detailed description of the collectible
     public String getDetails() {
