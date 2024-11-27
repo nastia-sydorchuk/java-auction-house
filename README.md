@@ -1,31 +1,19 @@
 # F20-21SF Coursework Project
 
-> Author: 
-
-## Getting started:
- 
-- [ ] Fork project in personal space
-- [ ] Clone project on machine
-- [ ] Create first issue on GitLab
-- [ ] Edit code to address issue
-- [ ] Commit by referencing issue number
-- [ ] Push commits
-- [ ] Edit README 
-
-Refer to the instructions on published Canvas.
+> Author: Anastasiia Sydorchuk
 
 ## Stage 1
 
-Design notes...
+Issues 1-3
 
 ## Stage 2
 
-Design notes...
+Issues 4-5
 
 ## Stage 3
 
-Design notes...
+Issues 6-12
 
 ## Stage 4
 
-Design notes...
+Issues 13-16
