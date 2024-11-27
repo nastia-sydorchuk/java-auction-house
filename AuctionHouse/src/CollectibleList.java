@@ -202,32 +202,35 @@ public class CollectibleList {
 
     public String getBreakdownByCondition() {
         // Initialize counters for each condition
-        int newCount = 0;
-        int goodCount = 0;
-        int damagedCount = 0;
+        int mintCount = 0;
+        int restoredCount = 0;
+        int needsRestoringCount = 0;
 
         for (Collectible c : collectibles) {
             Collectible.ConditionType condition = c.getCondition();
 
             switch (condition) {
                 case Collectible.ConditionType.MINT:
-                    newCount++;
+                    mintCount++;
                     break;
                 case Collectible.ConditionType.RESTORED:
-                    goodCount++;
+                    restoredCount++;
                     break;
                 case Collectible.ConditionType.NEEDS_RESTORING:
-                    damagedCount++;
+                    needsRestoringCount++;
                     break;
                 default:
                     break;
             }
         }
 
-        return "Mint: " + newCount + "\n" + "Restored: " + goodCount + "\n" + "Needs restoring: " + damagedCount + "\n";
+        return "Mint: " + mintCount + "\n" + "Restored: " + restoredCount + "\n" + "Needs restoring: " + needsRestoringCount + "\n";
     }
 
     public String createReport() {
+        if (this.collectibles == null || this.collectibles.isEmpty()) {
+            return "The inventory is empty. No report can be generated.";
+        }
         Collectible oldestItem = this.findOldestItem();
         Collectible newestItem = this.findNewestItem();
         Collectible oldestItemMiddle = this.findOldestItemMiddle();
